@@ -36,13 +36,13 @@ uint8_t digit[] = {
 
 void setup() {
   DDRA = ALL_HIGH; // set port A all pins as output
-  DDRB = B01111000; // set common anode pins as output
+  DDRB = B01111001; // set common anode pins as output
 }
 
 void loop() {
   long tmp = millis() / 1000; // number of seconds
   PORTA = ALL_HIGH; // reset PORT A all pins to HIGH
-  PORTB = DIGIT_4; // switch to first digit
+  PORTB = (tmp % 2) | DIGIT_4; // switch to first digit
   PORTA = digit[tmp % 10]; // show 0-9
   delay(1);
 
